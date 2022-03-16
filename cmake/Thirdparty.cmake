@@ -114,6 +114,7 @@ if(WIN32)
     INSTALL(DIRECTORY ${CMAKE_BINARY_DIR}/src/curl/ DESTINATION thirdparty)
 endif(WIN32)
 
+if(TESTS)
 if (WIN32)
     set(LIB_GTEST "gtest")
 
@@ -152,6 +153,7 @@ endif()
 INSTALL(DIRECTORY ${CMAKE_BINARY_DIR}/src/gtest/ DESTINATION thirdparty)
 
 add_dependencies(thirdparty ADD_${LIB_GTEST})
+endif()
 
 if (TARS_PROTOBUF)
     set(PROTOBUF_DIR_INC "${THIRDPARTY_PATH}/protobuf/include")
