@@ -892,7 +892,7 @@ int TC_EpollServer::Connection::sendBuffer()
 		return -2;
 	}
 
-	return checkFlow(sendBuffer, lastLeftBufferSize);
+	return 0;
 }
 
 int TC_EpollServer::Connection::send(const shared_ptr<SendContext> &sc)
