@@ -29,7 +29,7 @@ set(TARS_PROTOCOL tarsprotocol)
 set(TARS_PROTOCOL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/servant/protocol)
 FetchContent_Declare(${TARS_PROTOCOL}
     GIT_REPOSITORY https://${URL_BASE}/FISCO-BCOS/TarsProtocol.git
-    GIT_TAG master
+    GIT_TAG 1b8b3114fc43f022ba5c71f1aa61f351bcdcd61f
     SOURCE_DIR ${TARS_PROTOCOL_PATH}
 )
 FetchContent_MakeAvailable(${TARS_PROTOCOL})
