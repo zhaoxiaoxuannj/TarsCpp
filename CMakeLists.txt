@@ -28,7 +28,7 @@ endif()
 set(TARS_PROTOCOL tarsprotocol)
 set(TARS_PROTOCOL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/servant/protocol)
 FetchContent_Declare(${TARS_PROTOCOL}
-    GIT_REPOSITORY https://${URL_BASE}/cyjseagull/TarsProtocol.git
+    GIT_REPOSITORY https://${URL_BASE}/FISCO-BCOS/TarsProtocol.git
     GIT_TAG master
     SOURCE_DIR ${TARS_PROTOCOL_PATH}
 )
