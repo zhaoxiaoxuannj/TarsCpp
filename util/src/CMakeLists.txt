@@ -28,6 +28,7 @@ add_library(tarsutil ${DIR_SRCS})
 add_dependencies(tarsutil thirdparty)
 
 install(TARGETS tarsutil
+        EXPORT tarsutil-targets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 

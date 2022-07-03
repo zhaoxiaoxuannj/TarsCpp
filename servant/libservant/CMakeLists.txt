@@ -13,5 +13,6 @@ add_library(tarsservant ${DIR_SRCS})
 add_dependencies(tarsservant COPY-SERVENT-TARS)
 
 install(TARGETS tarsservant
+        EXPORT tarsservant-targets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
