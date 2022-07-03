@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/tarsutil-targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/tarsparse-targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/tarsservant-targets.cmake")
+
+check_required_components(tarscpp)

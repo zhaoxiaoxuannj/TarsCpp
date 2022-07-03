@@ -64,6 +64,36 @@ add_subdirectory(util)
 add_subdirectory(tools)
 add_subdirectory(servant)
 
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+  "${CMAKE_SOURCE_DIR}/cmake/tarscpp-config.cmake.in"
+  "${CMAKE_BINARY_DIR}/tarscpp-config.cmake"
+  INSTALL_DESTINATION "share/tarscpp"
+)
+
+install(
+  FILES "${CMAKE_BINARY_DIR}/tarscpp-config.cmake"
+  DESTINATION "share/tarscpp"
+)
+
+install(
+    EXPORT tarsutil-targets
+    DESTINATION share/tarscpp
+    NAMESPACE tarscpp::
+)
+
+install(
+    EXPORT tarsparse-targets
+    DESTINATION share/tarscpp
+    NAMESPACE tarscpp::
+)
+
+install(
+    EXPORT tarsservant-targets
+    DESTINATION share/tarscpp
+    NAMESPACE tarscpp::
+)
+
 if (TESTS)
     add_subdirectory(examples)
     add_subdirectory(unit-test)
