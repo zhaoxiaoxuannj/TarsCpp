@@ -27,10 +27,11 @@
 #include <mutex>
 #include <functional>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /**
  * @file tc_timeout_queue.h

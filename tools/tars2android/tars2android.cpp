@@ -21,6 +21,9 @@
 #include "util/tc_common.h"
 #include <string>
 
+using namespace std;
+using namespace tars;
+
 #define TAB     g_parse->getTab()
 #define INC_TAB g_parse->incTab()
 #define DEL_TAB g_parse->delTab()

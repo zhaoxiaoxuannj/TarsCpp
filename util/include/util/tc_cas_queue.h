@@ -7,10 +7,11 @@
 #include "util/tc_lock.h"
 #include "util/tc_spin_lock.h"
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /**
  * @file tc_cas_queue.h

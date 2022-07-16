@@ -22,10 +22,10 @@
 #include <mutex>
 #include <condition_variable>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
 /////////////////////////////////////////////////
 /** 
  * @file tc_thread_queue.h

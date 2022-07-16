@@ -37,7 +37,7 @@ public:
      */
     ~CookieOp()
     {
-        ServantProxyThreadData * td = ServantProxyThreadData::getData();
+        tars::ServantProxyThreadData * td = tars::ServantProxyThreadData::getData();
         assert(NULL != td);
         if (td)
         {
@@ -48,9 +48,9 @@ public:
     /**
      * 获取cookie
      */
-    static map<string, string> & getCookie()
+    static std::map<std::string, std::string> & getCookie()
     {
-        ServantProxyThreadData * td = ServantProxyThreadData::getData();
+        tars::ServantProxyThreadData * td = tars::ServantProxyThreadData::getData();
         assert(NULL != td);
 
         return td->_data._cookie;
@@ -59,9 +59,9 @@ public:
     /**
      * 设置cookie
      */
-    void setCookie(const map<string, string> &cookie)
+    void setCookie(const std::map<std::string, std::string> &cookie)
     {
-        ServantProxyThreadData * td = ServantProxyThreadData::getData();
+        tars::ServantProxyThreadData * td = tars::ServantProxyThreadData::getData();
         assert(NULL != td);
         if(td)
         {

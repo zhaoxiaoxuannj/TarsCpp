@@ -30,10 +30,11 @@
 
 #define APPCACHE_ROOT_PATH "/cache"
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 //////////////////////////////////////////////////////////////////////
 /**
  * 缓存

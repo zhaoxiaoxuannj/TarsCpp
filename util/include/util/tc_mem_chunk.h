@@ -20,10 +20,11 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /**  
 * @file tc_mem_chunk.h

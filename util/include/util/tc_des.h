@@ -4,10 +4,11 @@
 #include <string>
 #include <stdint.h>
 #include "util/tc_ex.h"
-using namespace std;
 
 namespace tars
 {
+
+using namespace std;
 
 /////////////////////////////////////////////////
 /** 

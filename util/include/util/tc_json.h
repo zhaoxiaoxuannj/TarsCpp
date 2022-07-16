@@ -26,10 +26,12 @@
 
 #include "util/tc_autoptr.h"
 
-using namespace std;
+
 
 namespace tars
 {
+
+using namespace std;
 
 /**
 * 编解码抛出的异常

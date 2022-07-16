@@ -246,9 +246,9 @@ TC_SemMutex::~TC_SemMutex()
 }
 void TC_SemMutex::init(key_t iKey)
 {
-    string key = "tc-mutex-" + TC_Common::tostr(iKey);
-    string rkey = "tc-readEvent-" + TC_Common::tostr(iKey);
-    string wkey = "tc-writeEvent-" + TC_Common::tostr(iKey);
+    std::string key = "tc-mutex-" + TC_Common::tostr(iKey);
+    std::string rkey = "tc-readEvent-" + TC_Common::tostr(iKey);
+    std::string wkey = "tc-writeEvent-" + TC_Common::tostr(iKey);
     _mutex = CreateMutex(NULL, FALSE, key.c_str());  
     if (_mutex == NULL)  
     {

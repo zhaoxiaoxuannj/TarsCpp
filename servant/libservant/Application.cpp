@@ -41,7 +41,7 @@
 #include "util/tc_openssl.h"
 #endif
 
-static TC_RollLogger __out__;
+static tars::TC_RollLogger __out__;
 
 #define NOTIFY_AND_WAIT(msg) { \
 RemoteNotify::getInstance()->report(msg); \

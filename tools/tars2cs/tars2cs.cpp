@@ -26,6 +26,9 @@
 #define INC_TAB g_parse->incTab()
 #define DEL_TAB g_parse->delTab()
 
+using namespace std;
+using namespace tars;
+
 //////////////////////////////////////////////////////////////////////////////////
 string Tars2Cs::toTypeInit(const TypePtr &pPtr) const
 {

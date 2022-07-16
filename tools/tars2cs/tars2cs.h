@@ -32,13 +32,13 @@ public:
      * ���ô������ɵĸ�Ŀ¼
      * @param dir
      */
-    void setBaseDir(const string &dir);
+    void setBaseDir(const std::string &dir);
 
     /**
      * ���ð�ǰ׺
      * @param prefix
      */
-    void setBasePackage(const string &prefix);
+    void setBasePackage(const std::string &prefix);
 
     /**
      * �����Ƿ���Ҫ����˴���
@@ -50,19 +50,19 @@ public:
      * @param file
      * @param isFramework �Ƿ��ǿ��
      */
-    void createFile(const string &file);
+    void createFile(const std::string &file);
 
 protected:
     /**
      * ���������ռ��ȡ�ļ�·��
      * @param ns �����ռ�
      *
-     * @return string
+     * @return std::string
      */
-    string getFilePath(const string &ns) const;
+    std::string getFilePath(const std::string &ns) const;
 
-    string _packagePrefix;
-    string _baseDir;
+    std::string _packagePrefix;
+    std::string _baseDir;
     bool   _bWithServant;
 
     //�����Ǳ�����Դ������
@@ -72,25 +72,25 @@ protected:
      * ����ĳ���͵Ľ���Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string writeTo(const TypeIdPtr &pPtr) const;
+    std::string writeTo(const TypeIdPtr &pPtr) const;
 
     /**
      * ����ĳ���͵ı���Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string readFrom(const TypeIdPtr &pPtr) const;
+    std::string readFrom(const TypeIdPtr &pPtr) const;
 
     /**
      * 
      * @param pPtr
      * 
-     * @return string
+     * @return std::string
      */
-    string display(const TypeIdPtr &pPtr) const;
+    std::string display(const TypeIdPtr &pPtr) const;
 
     //����������������Դ������
 protected:
@@ -99,17 +99,17 @@ protected:
      * ����ĳ���͵ĳ�ʼ���ַ���
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string toTypeInit(const TypePtr &pPtr) const;
+    std::string toTypeInit(const TypePtr &pPtr) const;
 
     /**
      * ����ĳ���͵Ķ�Ӧ������ַ�������Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string toObjStr(const TypePtr &pPtr) const;
+    std::string toObjStr(const TypePtr &pPtr) const;
 
     /**
      * �ж��Ƿ��Ƕ�������
@@ -120,64 +120,64 @@ protected:
      * ����ĳ���͵��ַ�������Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostr(const TypePtr &pPtr) const;
+    std::string tostr(const TypePtr &pPtr) const;
 
     /**
      * �����ڽ����͵��ַ���Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrBuiltin(const BuiltinPtr &pPtr) const;
+    std::string tostrBuiltin(const BuiltinPtr &pPtr) const;
     /**
      * ����vector���ַ�������
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrVector(const VectorPtr &pPtr) const;
+    std::string tostrVector(const VectorPtr &pPtr) const;
 
     /**
      * ����map���ַ�������
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrMap(const MapPtr &pPtr, bool bNew = false) const;
+    std::string tostrMap(const MapPtr &pPtr, bool bNew = false) const;
 
     /**
      * ����ĳ�ֽṹ�ķ�������
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrStruct(const StructPtr &pPtr) const;
+    std::string tostrStruct(const StructPtr &pPtr) const;
 
     /**
      * ����ĳ��ö�ٵķ�������
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrEnum(const EnumPtr &pPtr) const;
+    std::string tostrEnum(const EnumPtr &pPtr) const;
 
     /**
      * �������ͱ����Ľ���Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string decode(const TypeIdPtr &pPtr) const;
+    std::string decode(const TypeIdPtr &pPtr) const;
 
     /**
      * �������ͱ����ı���Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string encode(const TypeIdPtr &pPtr) const;
+    std::string encode(const TypeIdPtr &pPtr) const;
 
     //������h��java�ļ��ľ�������
 protected:
@@ -185,48 +185,48 @@ protected:
      * ���ɽṹ��java�ļ�����
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateCs(const StructPtr &pPtr, const NamespacePtr &nPtr) const;
+    std::string generateCs(const StructPtr &pPtr, const NamespacePtr &nPtr) const;
 
     /**
      * ����������javaԴ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateCs(const ContainerPtr &pPtr) const;
+    std::string generateCs(const ContainerPtr &pPtr) const;
 
     /**
      * ���ɲ���������java�ļ�����
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateCs(const ParamDeclPtr &pPtr) const;
+    std::string generateCs(const ParamDeclPtr &pPtr) const;
 
     /**
      * ����ö�ٵ�ͷ�ļ�Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateCs(const EnumPtr &pPtr, const NamespacePtr &nPtr) const;
+    std::string generateCs(const EnumPtr &pPtr, const NamespacePtr &nPtr) const;
 
     /**
      * ���ɳ���javaԴ��
      * @param pPtr
      * 
-     * @return string
+     * @return std::string
      */
     void generateCs(const ConstPtr &pPtr, const NamespacePtr &nPtr) const;
 
-    void generateCs(const vector<EnumPtr> &es,const vector<ConstPtr> &cs,const NamespacePtr &nPtr) const;
+    void generateCs(const std::vector<EnumPtr> &es,const std::vector<ConstPtr> &cs,const NamespacePtr &nPtr) const;
     /**
      * �������ֿռ�java�ļ�Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
     void generateCs(const NamespacePtr &pPtr) const;
 
@@ -234,7 +234,7 @@ protected:
      * ����ÿ��tars�ļ���java�ļ�Դ��
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
     void generateCs(const ContextPtr &pPtr) const;
 

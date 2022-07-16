@@ -22,11 +22,11 @@
 #include "servant/Global.h"
 #include "servant/ConfigF.h"
 
-using namespace std;
-
 namespace tars
 {
-     
+
+ using namespace std;   
+ 
 /**
  *
  * 功能：获取远程系统配置，生成本地文件，支持备份和回滚

@@ -30,10 +30,11 @@
 #include "util/tc_thread.h"
 #include "util/tc_epoller.h"
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /**
  * @file  tc_coroutine.h

@@ -23,10 +23,10 @@
 #include "util/tc_platform.h"
 #include <functional>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
 
 /////////////////////////////////////////////////
 /**

@@ -4,6 +4,7 @@
 #include <set>
 #include <list>
 
+using namespace std;
 using namespace tars;
 
 void usage()

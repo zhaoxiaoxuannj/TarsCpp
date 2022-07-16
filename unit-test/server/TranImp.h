@@ -6,11 +6,8 @@
 #include <vector>
 #include "servant/Application.h"
 
-using namespace std;
-using namespace tars;
-
 /////////////////////////////////////////////////////////////////////////
-class TranImp : public Servant {
+class TranImp : public tars::Servant {
 
 public:
     /**
@@ -30,13 +27,13 @@ public:
      * @param response 
      * @return int 
      */
-    virtual int doRequest(tars::CurrentPtr current, vector<char> &response);
+    virtual int doRequest(tars::CurrentPtr current, std::vector<char> &response);
 
     /**
      * @param resp 
      * @return int 
      */
-    virtual int doResponse(ReqMessagePtr resp);
+    virtual int doResponse(tars::ReqMessagePtr resp);
 
     /**
      * 对象销毁
@@ -44,9 +41,9 @@ public:
     virtual void destroy();
 
 protected:
-    void async_call(tars::CurrentPtr current, vector<char> &response);
+    void async_call(tars::CurrentPtr current, std::vector<char> &response);
 protected:
-	ServantPrx _servantPrx;
+	tars::ServantPrx _servantPrx;
 
 };
 ///////////////////////////////////////////////////////////////////////////////

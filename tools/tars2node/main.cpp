@@ -17,6 +17,9 @@
 #include "util/tc_option.h"
 #include "code_generator.h"
 
+using namespace std;
+using namespace tars;
+
 void version()
 {
     cout << "v" << GENERATOR_VERSION << endl;

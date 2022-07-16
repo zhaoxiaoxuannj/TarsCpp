@@ -1653,7 +1653,7 @@ string Tars2Cpp::generateServantDispatch(const OperationPtr& pPtr, const string&
     s << TAB << "if (_current->getRequestVersion() == TUPVERSION)" << endl;
     s << TAB << "{" << endl;
     INC_TAB;
-    s << TAB << "UniAttribute<" + _namespace + "::BufferWriterVector, " + _namespace + "::BufferReader>  tarsAttr;" << endl;
+    s << TAB << "tars::UniAttribute<" + _namespace + "::BufferWriterVector, " + _namespace + "::BufferReader>  tarsAttr;" << endl;
 	s << TAB << "tarsAttr.setVersion(_current->getRequestVersion());" << endl;
     s << TAB << "tarsAttr.decode(_current->getRequestBuffer());" << endl;
     for(size_t i = 0; i < vParamDecl.size(); i++)
@@ -1819,7 +1819,7 @@ string Tars2Cpp::generateServantDispatch(const OperationPtr& pPtr, const string&
     s << TAB << "{" << endl;
     INC_TAB;
 
-    s << TAB << "UniAttribute<" + _namespace + "::BufferWriterVector, " + _namespace + "::BufferReader>  tarsAttr;" << endl;
+    s << TAB << "tars::UniAttribute<" + _namespace + "::BufferWriterVector, " + _namespace + "::BufferReader>  tarsAttr;" << endl;
 	s << TAB << "tarsAttr.setVersion(_current->getRequestVersion());" << endl;
     if(pPtr->getReturnPtr()->getTypePtr())
     {
@@ -2461,7 +2461,7 @@ string Tars2Cpp::generateH(const OperationPtr& pPtr, bool bVirtual, const string
         s << TAB << "{" << endl;
         INC_TAB;
 
-        s << TAB << "UniAttribute<" + _namespace + "::BufferWriterVector, " + _namespace + "::BufferReader>  tarsAttr;" << endl;
+        s << TAB << "tars::UniAttribute<" + _namespace + "::BufferWriterVector, " + _namespace + "::BufferReader>  tarsAttr;" << endl;
         s << TAB << "tarsAttr.setVersion(current->getRequestVersion());" << endl;
         if(pPtr->getReturnPtr()->getTypePtr())
         {

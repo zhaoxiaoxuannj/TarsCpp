@@ -10,10 +10,12 @@
 #include <stdio.h>
 
 #include "util/tc_autoptr.h"
-using namespace std;
 
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 // 说明: Xml编解码的公共库
 // Author : linfengchen@tencent.com

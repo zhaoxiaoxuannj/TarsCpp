@@ -31,10 +31,10 @@ typedef unsigned short mode_t;
 #include <mutex>
 #include <unordered_map>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
 
 class TC_Port
 {

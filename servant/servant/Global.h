@@ -35,10 +35,11 @@
 #include "tup/RequestF.h"
 #include "servant/BaseF.h"
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 //////////////////////////////////////////////////////////////
 
 const size_t MAX_CLIENT_THREAD_NUM          = 2048; //客户端最大网络线程数(线程模型: 网络线程数, 协程模型: 业务线程+网络线程)

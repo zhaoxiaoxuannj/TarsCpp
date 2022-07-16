@@ -19,10 +19,10 @@
 
 #include "util/tc_md5.h"
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
 
 /////////////////////////////////////////////////
 /**

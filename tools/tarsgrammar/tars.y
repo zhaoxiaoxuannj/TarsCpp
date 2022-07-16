@@ -19,8 +19,6 @@
 #include <memory>
 #include <cassert>
 
-using namespace std;
-
 #define YYSTYPE GrammarBasePtr
 
 #include "parse.h"
@@ -394,7 +392,7 @@ operation_preamble
 {
     TypePtr returnType = TypePtr::dynamicCast($1);
     StringGrammarPtr ident = StringGrammarPtr::dynamicCast($2);
-    string name        = ident->v;
+    std::string name        = ident->v;
     InterfacePtr cl    = InterfacePtr::dynamicCast(g_parse->currentContainer());
     if(cl)
     {
@@ -729,7 +727,7 @@ const_initializer
 : TARS_CONST_INTEGER
 {
     IntergerGrammarPtr intVal = IntergerGrammarPtr::dynamicCast($1);
-    ostringstream sstr;
+    std::ostringstream sstr;
     sstr << intVal->v;
     ConstGrammarPtr c = new ConstGrammar();
     c->t = ConstGrammar::VALUE;
@@ -739,7 +737,7 @@ const_initializer
 | TARS_CONST_FLOAT
 {
     FloatGrammarPtr floatVal = FloatGrammarPtr::dynamicCast($1);
-    ostringstream sstr;
+    std::ostringstream sstr;
     sstr << floatVal->v;
     ConstGrammarPtr c = new ConstGrammar();
     c->t = ConstGrammar::VALUE;

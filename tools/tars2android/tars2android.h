@@ -38,13 +38,13 @@ public:
      * 设置代码生成的根目录
      * @param dir
      */
-    void setBaseDir(const string& dir);
+    void setBaseDir(const std::string& dir);
 
     /**
      * 设置包前缀
      * @param prefix
      */
-    void setBasePackage(const string& prefix);
+    void setBasePackage(const std::string& prefix);
 
     /**
     * 默认将非byte的vector转list 加上该参数后转数组
@@ -54,7 +54,7 @@ public:
     void setCheckDefault(bool bCheck) { _bCheckDefault = bCheck; }
 
     /*支持自定义字符集*/
-    void setCharset(string charset) { _sCharset = charset; }
+    void setCharset(std::string charset) { _sCharset = charset; }
     /*支持javabean规范*/
     void setWithJbr(bool bJbr) { _bWithJbr = bJbr;}
     /*去掉属性的read write方法、 cloneable、equals、hashCode、clone、display*/
@@ -76,16 +76,16 @@ public:
     }
 
 // 增加的接口定义
-    string generateConstructor(const TypePtr& vType) const;
-    string generateAndroidJavaParams(const vector<ParamDeclPtr>& vParamDecl, bool needParamType, bool needOutParam) const;
-    string generateAndroidStub(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generateConstructor(const TypePtr& vType) const;
+    std::string generateAndroidJavaParams(const std::vector<ParamDeclPtr>& vParamDecl, bool needParamType, bool needOutParam) const;
+    std::string generateAndroidStub(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
     
     /**
      * 生成
      * @param file
      * @param isFramework 是否是框架
      */
-    void createFile(const string& file);
+    void createFile(const std::string& file);
 
     /**
      * 设置TARS库的报名
@@ -102,15 +102,15 @@ protected:
      * 根据命名空间获取文件路径
      * @param ns 命名空间
      *
-     * @return string
+     * @return std::string
      */
-    string getFilePath(const string& ns) const;
+    std::string getFilePath(const std::string& ns) const;
 
-    string 	_packagePrefix;
-    string 	_baseDir;
+    std::string 	_packagePrefix;
+    std::string 	_baseDir;
     bool  	_bForceArray;
     bool    _bCheckDefault;
-    string  _sCharset;
+    std::string  _sCharset;
     bool    _bWithJbr;
     bool    _bWithCompact;
     bool    _bEnumCompact;
@@ -125,26 +125,26 @@ protected:
      * 生成某类型的解码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string writeTo(const TypeIdPtr& pPtr) const;
+    std::string writeTo(const TypeIdPtr& pPtr) const;
 
     /**
      * 生成某类型的编码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string readFrom(const TypeIdPtr& pPtr) const;
+    std::string readFrom(const TypeIdPtr& pPtr) const;
 
     /**
      * 
      * 这个函数目前是用不到的
      * @param pPtr
      * 
-     * @return string
+     * @return std::string
      */
-    string display(const TypeIdPtr& pPtr) const;
+    std::string display(const TypeIdPtr& pPtr) const;
 
     //下面是类型描述的源码生成
 protected:
@@ -153,17 +153,17 @@ protected:
      * 生成某类型的初始化字符串
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string toTypeInit(const TypePtr& pPtr) const;
+    std::string toTypeInit(const TypePtr& pPtr) const;
 
     /**
      * 生成某类型的对应对象的字符串描述源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string toObjStr(const TypePtr& pPtr) const;
+    std::string toObjStr(const TypePtr& pPtr) const;
 
     /**
      * 判断是否是对象类型
@@ -174,64 +174,64 @@ protected:
      * 生成某类型的字符串描述源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostr(const TypePtr& pPtr) const;
+    std::string tostr(const TypePtr& pPtr) const;
 
     /**
      * 生成内建类型的字符串源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrBuiltin(const BuiltinPtr& pPtr) const;
+    std::string tostrBuiltin(const BuiltinPtr& pPtr) const;
     /**
      * 生成vector的字符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrVector(const VectorPtr& pPtr) const;
+    std::string tostrVector(const VectorPtr& pPtr) const;
 
     /**
      * 生成map的字符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrMap(const MapPtr& pPtr, bool bNew = false) const;
+    std::string tostrMap(const MapPtr& pPtr, bool bNew = false) const;
 
     /**
      * 生成某种结构的符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrStruct(const StructPtr& pPtr) const;
+    std::string tostrStruct(const StructPtr& pPtr) const;
 
     /**
      * 生成某种枚举的符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrEnum(const EnumPtr& pPtr) const;
+    std::string tostrEnum(const EnumPtr& pPtr) const;
 
     /**
      * 生成类型变量的解码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string decode(const TypeIdPtr& pPtr) const;
+    std::string decode(const TypeIdPtr& pPtr) const;
 
     /**
      * 生成类型变量的编码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string encode(const TypeIdPtr& pPtr) const;
+    std::string encode(const TypeIdPtr& pPtr) const;
 
     //以下是h和java文件的具体生成
 protected:
@@ -239,119 +239,119 @@ protected:
      * 结构的md5
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string MD5(const StructPtr& pPtr) const;
+    std::string MD5(const StructPtr& pPtr) const;
 
     /**
      * 生成结构的Holder类，用于引用传递
      * @param pPtr
      * @param nPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateHolder(const StructPtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generateHolder(const StructPtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 放置默认元素用于识别map/list类型
      * @param pPtr
      * @param sElemName 元素名称
      *
-     * @return string
+     * @return std::string
      */
-    string generateDefautElem(const TypePtr& pPtr, const string& sElemName) const;
+    std::string generateDefautElem(const TypePtr& pPtr, const std::string& sElemName) const;
 
     /**
      * 生成结构的java文件内容
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateJava(const StructPtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generateJava(const StructPtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 生成容器的java源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateJava(const ContainerPtr& pPtr) const;
+    std::string generateJava(const ContainerPtr& pPtr) const;
 
     /**
      * 生成参数声明的java文件内容
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateJava(const ParamDeclPtr& pPtr) const;
+    std::string generateJava(const ParamDeclPtr& pPtr) const;
 
     /**
      * 生成作操作的proxy的java文件内容
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateJava(const OperationPtr& pPtr, const string& cn) const;
+    std::string generateJava(const OperationPtr& pPtr, const std::string& cn) const;
 
     /**
      * 生成操作java文件函数调用分发的源码
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateDispatchJava(const OperationPtr& pPtr, const string& cn) const;
+    std::string generateDispatchJava(const OperationPtr& pPtr, const std::string& cn) const;
 
     /**
      * 生成接口的java文件的源码
      * @param pPtr
      * @param nPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateJava(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generateJava(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 生成Proxy接口的java文件的源码
      * @param pPtr
      * @param nPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generatePrx(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generatePrx(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 生成Proxy帮助类的java文件的源码
      * @param pPtr
      * @param nPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generatePrxHelper(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generatePrxHelper(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 生成Proxy回调类的java文件的源码
      * @param pPtr
      * @param nPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generatePrxCallback(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generatePrxCallback(const InterfacePtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 生成枚举的头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateJava(const EnumPtr& pPtr, const NamespacePtr& nPtr) const;
+    std::string generateJava(const EnumPtr& pPtr, const NamespacePtr& nPtr) const;
 
     /**
      * 生成常量java源码
      * @param pPtr
      * 
-     * @return string
+     * @return std::string
      */
     void generateJava(const ConstPtr& pPtr, const NamespacePtr& nPtr) const;
 
@@ -359,7 +359,7 @@ protected:
      * 生成名字空间java文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
     void generateJava(const NamespacePtr& pPtr) const;
 
@@ -367,7 +367,7 @@ protected:
      * 生成每个tars文件的java文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
     void generateJava(const ContextPtr& pPtr) const;
 
