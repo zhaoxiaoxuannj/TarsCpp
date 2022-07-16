@@ -30,7 +30,7 @@ public:
 	const std::map<std::string, ConstPtr>& getAllConsts() const;
 
 	void analysis(const InterfacePtr& interfacePtr);
-	void analysis(const vector<InterfacePtr>& interfacePtrs);
+	void analysis(const std::vector<InterfacePtr>& interfacePtrs);
 
 private:
 	void analysis(const StructPtr& structPtr);

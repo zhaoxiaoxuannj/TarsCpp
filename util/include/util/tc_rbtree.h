@@ -25,10 +25,11 @@
 #include "util/tc_pack.h"
 #include "util/tc_mem_chunk.h"
 
-using namespace std;
-
 namespace tars
 {
+    
+using namespace std;
+
 /////////////////////////////////////////////////
 /** 
 * @file tc_rbtree.h 

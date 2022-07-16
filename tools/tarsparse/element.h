@@ -28,8 +28,6 @@
 #include "errno.h"
 #include "util/tc_autoptr.h"
 
-using namespace std;
-
 
 void yyerror(char const *msg);
 
@@ -52,7 +50,7 @@ class StringGrammar : public GrammarBase
 public:
 
     StringGrammar() { }
-    string v;
+    std::string v;
 };
 
 typedef tars::TC_AutoPtr<StringGrammar> StringGrammarPtr;
@@ -114,7 +112,7 @@ public:
     };
 
     int    t;
-    string v;
+    std::string v;
 };
 
 typedef tars::TC_AutoPtr<ConstGrammar> ConstGrammarPtr;
@@ -211,9 +209,9 @@ public:
     /**
      * 缺省值
      *
-     * @return string
+     * @return std::string
      */
-    string def() const;
+    std::string def() const;
 
     /**
      * 字符串标示
@@ -297,14 +295,14 @@ public:
      * @param ptr
      * @param id
      */
-    TypeId(const TypePtr& ptr, const string& id);
+    TypeId(const TypePtr& ptr, const std::string& id);
 
     /**
      * 变量名称
      *
-     * @return string
+     * @return std::string
      */
-    string getId() const { return _id; }
+    std::string getId() const { return _id; }
 
     /**
      * 变量类型
@@ -330,7 +328,7 @@ public:
      * 设置可选字段
      * 只有基本类型才有缺省值
      */
-    void setDefault(const string &def);
+    void setDefault(const std::string &def);
 
     /** 
      *  
@@ -352,9 +350,9 @@ public:
     /**
      * 缺省值
      *
-     * @return string
+     * @return std::string
      */
-    string def() const { return _default; }
+    std::string def() const { return _default; }
 
     /**
      * 是否有缺省值
@@ -365,11 +363,11 @@ public:
 
 protected:
     TypePtr _ptr;
-    string  _id;
+    std::string  _id;
     bool    _bRequire;
     int     _tag;
     bool    _bHasDefault;
-    string  _default;
+    std::string  _default;
 
 public:
     int     _size;
@@ -393,7 +391,7 @@ public:
      * 构造函数
      * @param id
      */
-    Container(const string &id) : _id(id)
+    Container(const std::string &id) : _id(id)
     {
     }
 
@@ -403,24 +401,24 @@ public:
      *
      * @return NamespacePtr
      */
-    NamespacePtr createNamespace(const string &id);
+    NamespacePtr createNamespace(const std::string &id);
 
     /**
      * 获取ID
      *
-     * @return string
+     * @return std::string
      */
-    string getId() const { return _id;}
+    std::string getId() const { return _id;}
 
     /**
      * 获取所有的名字空间
      *
-     * @return vector<NamespacePtr>&
+     * @return std::vector<NamespacePtr>&
      */
-    vector<NamespacePtr> &getAllNamespacePtr() { return _ns; }
+    std::vector<NamespacePtr> &getAllNamespacePtr() { return _ns; }
 protected:
-    string                  _id;
-    vector<NamespacePtr>    _ns;
+    std::string                  _id;
+    std::vector<NamespacePtr>    _ns;
 };
 
 typedef tars::TC_AutoPtr<Container> ContainerPtr;
@@ -465,7 +463,7 @@ typedef tars::TC_AutoPtr<Const> ConstPtr;
 class Enum : virtual public Container, virtual public Type
 {
 public:
-    Enum(const string &id, const string &sid) : Container(id), _sid(sid)
+    Enum(const std::string &id, const std::string &sid) : Container(id), _sid(sid)
     {
     }
 
@@ -478,16 +476,16 @@ public:
     /**
      * 获取所有的成员变量
      *
-     * @return vector<TypeIdPtr>&
+     * @return std::vector<TypeIdPtr>&
      */
-    vector<TypeIdPtr>& getAllMemberPtr() {return _members;}
+    std::vector<TypeIdPtr>& getAllMemberPtr() {return _members;}
 
     /**
      * 获取结构的名称
      *
-     * @return string
+     * @return std::string
      */
-    string getSid() const { return _sid; }
+    std::string getSid() const { return _sid; }
 
     /**
      * 是否是简单类型
@@ -501,12 +499,12 @@ protected:
     /**
      * 每个变量名称
      */
-    vector<TypeIdPtr>   _members;
+    std::vector<TypeIdPtr>   _members;
 
     /**
      * 包含名字的空间的名称
     */
-    string          _sid;
+    std::string          _sid;
 };
 
 typedef tars::TC_AutoPtr<Enum> EnumPtr;
@@ -523,7 +521,7 @@ public:
      * 构造函数
      * @param id
      */
-    Struct(const string& id, const string &sid) : Container(id), _sid(sid)
+    Struct(const std::string& id, const std::string &sid) : Container(id), _sid(sid)
     {
     }
 
@@ -536,28 +534,28 @@ public:
     /**
      * 获取所有的成员变量
      *
-     * @return vector<TypeIdPtr>&
+     * @return std::vector<TypeIdPtr>&
      */
-    vector<TypeIdPtr>& getAllMemberPtr() {return _members;}
+    std::vector<TypeIdPtr>& getAllMemberPtr() {return _members;}
 
     /**
      * 获取结构的名称
      *
-     * @return string
+     * @return std::string
      */
-    string getSid() const { return _sid; }
+    std::string getSid() const { return _sid; }
 
     /**
      * 增加小于memeber
      * @param member
      */
-    void addKey(const string &member);
+    void addKey(const std::string &member);
 
-    vector<string> getKey() { return _key; }
+    std::vector<std::string> getKey() { return _key; }
 protected:
-    vector<TypeIdPtr>   _members;
-    vector<string>      _key;
-    string              _sid;
+    std::vector<TypeIdPtr>   _members;
+    std::vector<std::string>      _key;
+    std::string              _sid;
 };
 
 typedef tars::TC_AutoPtr<Struct> StructPtr;
@@ -621,7 +619,7 @@ public:
      * @param id
      * @param typePtr
      */
-    Operation(const string &id, const TypePtr &typePtr) : Container(id), _itag(0)
+    Operation(const std::string &id, const TypePtr &typePtr) : Container(id), _itag(0)
     {
         _retPtr = new TypeId(typePtr, "_ret");
         _retPtr->setRequire(_itag);
@@ -647,13 +645,13 @@ public:
     /**
      * 获取所有参数
      *
-     * @return vector<ParamDeclPtr>&
+     * @return std::vector<ParamDeclPtr>&
      */
-    vector<ParamDeclPtr> &getAllParamDeclPtr() { return _ps; }
+    std::vector<ParamDeclPtr> &getAllParamDeclPtr() { return _ps; }
 protected:
     int                     _itag;
     TypeIdPtr               _retPtr;
-    vector<ParamDeclPtr>    _ps;
+    std::vector<ParamDeclPtr>    _ps;
 };
 
 typedef tars::TC_AutoPtr<Operation> OperationPtr;
@@ -669,7 +667,7 @@ public:
      * 构造
      * @param id
      */
-    Interface(const string &id) : Container(id)
+    Interface(const std::string &id) : Container(id)
     {
     }
 
@@ -680,16 +678,16 @@ public:
      *
      * @return OperationPtr
      */
-    OperationPtr createOperation(const string &id, const TypePtr &typePtr);
+    OperationPtr createOperation(const std::string &id, const TypePtr &typePtr);
 
     /**
      * 获取所有操作
      *
-     * @return vector<OperationPtr>&
+     * @return std::vector<OperationPtr>&
      */
-    vector<OperationPtr> &getAllOperationPtr() { return _ops; }
+    std::vector<OperationPtr> &getAllOperationPtr() { return _ops; }
 protected:
-    vector<OperationPtr>    _ops;
+    std::vector<OperationPtr>    _ops;
 };
 
 typedef tars::TC_AutoPtr<Interface> InterfacePtr;
@@ -706,7 +704,7 @@ public:
      * 构造函数
      * @param id
      */
-    Namespace(const string &id) : Container(id)
+    Namespace(const std::string &id) : Container(id)
     {
     }
 
@@ -716,7 +714,7 @@ public:
      *
      * @return InterfacePtr
      */
-    InterfacePtr createInterface(const string &id);
+    InterfacePtr createInterface(const std::string &id);
 
     /**
      * 生成结构
@@ -724,7 +722,7 @@ public:
      *
      * @return StructPtr
      */
-    StructPtr createStruct(const string& id);
+    StructPtr createStruct(const std::string& id);
 
     /**
      * 生成枚举类型
@@ -732,7 +730,7 @@ public:
      * 
      * @return EnumPtr
      */
-    EnumPtr createEnum(const string &id);
+    EnumPtr createEnum(const std::string &id);
 
     /**
      * 
@@ -753,36 +751,36 @@ public:
     /**
      * 获取所有的接口
      *
-     * @return vector<InterfacePtr>&
+     * @return std::vector<InterfacePtr>&
      */
-    vector<InterfacePtr> &getAllInterfacePtr() { return _is; }
+    std::vector<InterfacePtr> &getAllInterfacePtr() { return _is; }
 
     /**
      * 获取所有的结构
      *
-     * @return vector<StructPtr>&
+     * @return std::vector<StructPtr>&
      */
-    vector<StructPtr> &getAllStructPtr() { return _ss; }
+    std::vector<StructPtr> &getAllStructPtr() { return _ss; }
 
     /**
      * 生成枚举类型
      * 
-     * @return vector<EnumPtr>&
+     * @return std::vector<EnumPtr>&
      */
-    vector<EnumPtr> &getAllEnumPtr() { return _es; }
+    std::vector<EnumPtr> &getAllEnumPtr() { return _es; }
 
     /**
      * 常量类型
      * 
-     * @return vector<ConstPtr>&
+     * @return std::vector<ConstPtr>&
      */
-    vector<ConstPtr> &getAllConstPtr()     { return _cs; }
+    std::vector<ConstPtr> &getAllConstPtr()     { return _cs; }
 
 protected:
-    vector<InterfacePtr>    _is;
-    vector<StructPtr>       _ss;
-    vector<EnumPtr>         _es;
-    vector<ConstPtr>        _cs;
+    std::vector<InterfacePtr>    _is;
+    std::vector<StructPtr>       _ss;
+    std::vector<EnumPtr>         _es;
+    std::vector<ConstPtr>        _cs;
 };
 
 /////////////////////////////////////////////////////////////////
@@ -795,7 +793,7 @@ public:
     /**
      * 构造函数
      */
-    Context(const string &file) : _currline(1), _filename(file)
+    Context(const std::string &file) : _currline(1), _filename(file)
     {
     }
 
@@ -814,15 +812,15 @@ public:
     /**
      * 当前文件名
      * 
-     * @return string
+     * @return std::string
      */
-    string getFileName() { return _filename; }
+    std::string getFileName() { return _filename; }
 
     /**
      * 添加include的文件
      * @param incl
      */
-    void addInclude(const string &incl);
+    void addInclude(const std::string &incl);
 
     /**
      * 添加属于这个文件的名字空间
@@ -836,22 +834,22 @@ public:
     /**
      * 获取includes的文件
      * 
-     * @return vector<string>
+     * @return std::vector<string>
      */
-    vector<string> getIncludes() { return _includes; }
+    std::vector<std::string> getIncludes() { return _includes; }
 
     /**
      * 获取名字空间
      * 
-     * @return vector<NamespacePtr>
+     * @return std::vector<NamespacePtr>
      */
-    vector<NamespacePtr> getNamespaces() { return _namespaces; }
+    std::vector<NamespacePtr> getNamespaces() { return _namespaces; }
 
 protected:
     size_t                  _currline;
-    string                  _filename;
-    vector<string>          _includes;
-    vector<NamespacePtr>    _namespaces;
+    std::string                  _filename;
+    std::vector<std::string>          _includes;
+    std::vector<NamespacePtr>    _namespaces;
 };
 
 typedef tars::TC_AutoPtr<Context> ContextPtr;

@@ -6,11 +6,8 @@
 #include <vector>
 #include "servant/Application.h"
 
-using namespace std;
-using namespace tars;
-
 /////////////////////////////////////////////////////////////////////////
-class HttpImp : public Servant {
+class HttpImp : public tars::Servant {
 
 public:
     /**
@@ -30,7 +27,7 @@ public:
      * @param response 
      * @return int 
      */
-    virtual int doRequest(tars::CurrentPtr current, vector<char> &response);
+    virtual int doRequest(tars::CurrentPtr current, std::vector<char> &response);
 
     /**
      * 对象销毁

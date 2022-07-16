@@ -26,11 +26,11 @@
 #include "servant/BaseF.h"
 #include "util/tc_network_buffer.h"
 
-using namespace std;
-using namespace tup;
-
 namespace tars
 {
+
+using namespace std;
+using namespace tup;
 
 class TC_Transceiver;
 

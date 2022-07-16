@@ -12,10 +12,11 @@
 #include <mutex>
 #include <utility>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /**
  * @file tc_thread_pool.h

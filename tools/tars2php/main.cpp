@@ -18,6 +18,8 @@
 #include "util/tc_common.h"
 #include "tars2php.h"
 
+using namespace std;
+using namespace tars;
 
 void usage()
 {

@@ -37,7 +37,7 @@
 // #include "zipkin/ip_address.h"
 // #endif
 // 
-const static string CONFIG_ROOT_PATH = string("/tars/application/client");
+const static std::string CONFIG_ROOT_PATH = std::string("/tars/application/client");
 
 /**
  * 设计核心:

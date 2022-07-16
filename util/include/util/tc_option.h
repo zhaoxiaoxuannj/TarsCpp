@@ -21,10 +21,12 @@
 #include <vector>
 #include <string>
 #include <sstream>
-using namespace std;
 
 namespace tars
 {
+    
+using namespace std;
+
 /////////////////////////////////////////////////
 /** 
  * @file tc_option.h 

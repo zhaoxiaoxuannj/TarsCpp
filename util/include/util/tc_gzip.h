@@ -25,10 +25,11 @@
 #include <cassert>
 #include <memory>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /** 
 * @file tc_gzip.h 

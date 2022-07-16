@@ -20,11 +20,10 @@
 #include "servant/NotifyF.h"
 #include "servant/Global.h"
 #include "util/tc_singleton.h"
-
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
 
 /**
  * 上报信息给Notify服务

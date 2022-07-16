@@ -25,10 +25,12 @@
 #include "util/tc_monitor.h"
 #include "util/tc_timeprovider.h"
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
+
+
 /////////////////////////////////////////////////
 /**
  * @file tc_timeout_queue_noid.h

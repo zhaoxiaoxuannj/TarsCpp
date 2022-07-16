@@ -25,13 +25,13 @@
 #include <vector>
 #include <string>
 
-using namespace std;
-
 #undef max
 #undef min
 
 namespace tars
 {
+
+using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////////
 //

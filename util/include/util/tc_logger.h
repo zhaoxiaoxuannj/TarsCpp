@@ -42,9 +42,10 @@
 #include <sys/syscall.h>
 #endif
 
-using namespace std;
+
 namespace tars
 {
+	using namespace std;
 	/////////////////////////////////////////////////
 	/**
 	 * @file tc_logger.h

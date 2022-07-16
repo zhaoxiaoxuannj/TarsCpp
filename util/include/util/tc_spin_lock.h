@@ -6,10 +6,10 @@
 #include <atomic>
 #include <memory>
 
-using namespace std;
-
 namespace tars
 {
+
+using namespace std;
 
 /**
  * 自旋锁

@@ -414,7 +414,7 @@ void ServantHandle::handle(const shared_ptr<TC_EpollServer::RecvContext> &data)
     
 //     if (IS_MSG_TYPE(current->getMessageType(), tars::TARSMESSAGETYPETRACK))
 //     {
-//         map<string, string>::const_iterator trackinfoIter = current->getRequestStatus().find(ServantProxy::STATUS_TRACK_KEY);
+//         std::map<std::string, std::string>::const_iterator trackinfoIter = current->getRequestStatus().find(ServantProxy::STATUS_TRACK_KEY);
 //         TLOGTARS("[TARS] servant got a tracking request, message_type set" << current->getMessageType() << endl);
 //         if (trackinfoIter != current->getRequestStatus().end())
 //         {
@@ -485,7 +485,7 @@ bool ServantHandle::processDye(const CurrentPtr &current, string& dyeingKey)
 	}
 
     //当前请求已经被染色, 需要打印染色日志
-    map<string, string>::const_iterator dyeingIt = current->getRequestStatus().find(ServantProxy::STATUS_DYED_KEY);
+    std::map<std::string, std::string>::const_iterator dyeingIt = current->getRequestStatus().find(ServantProxy::STATUS_DYED_KEY);
 
     if (IS_MSG_TYPE(current->getMessageType(), tars::TARSMESSAGETYPEDYED))
     {
@@ -503,7 +503,7 @@ bool ServantHandle::processDye(const CurrentPtr &current, string& dyeingKey)
 	//servant已经被染色, 开启染色日志
 	if (_application->getServantHelper()->isDyeing())
 	{
-		map<string, string>::const_iterator dyeingKeyIt = current->getRequestStatus().find(ServantProxy::STATUS_GRID_KEY);
+		std::map<std::string, std::string>::const_iterator dyeingKeyIt = current->getRequestStatus().find(ServantProxy::STATUS_GRID_KEY);
 
 		if (dyeingKeyIt != current->getRequestStatus().end() &&
 			_application->getServantHelper()->isDyeingReq(dyeingKeyIt->second, current->getServantName(), current->getFuncName()))
@@ -531,7 +531,7 @@ bool ServantHandle::processTrace(const CurrentPtr &current)
     }
 
     // 如果调用链需要追踪，需要初始化线程私有追踪参数
-    map<string, string>::const_iterator traceIt = current->getRequestStatus().find(ServantProxy::STATUS_TRACE_KEY);
+    std::map<std::string, std::string>::const_iterator traceIt = current->getRequestStatus().find(ServantProxy::STATUS_TRACE_KEY);
 
     if (IS_MSG_TYPE(current->getMessageType(), tars::TARSMESSAGETYPETRACE))
     {
@@ -555,11 +555,11 @@ bool ServantHandle::processTrace(const CurrentPtr &current)
     return false;
 }
 
-bool ServantHandle::processCookie(const CurrentPtr &current, map<string, string> &cookie)
+bool ServantHandle::processCookie(const CurrentPtr &current, std::map<std::string, std::string> &cookie)
 {
 	const static string STATUS = "STATUS_";
 
-	std::for_each(current->getRequestStatus().begin(), current->getRequestStatus().end(),[&](const map<string, string>::value_type& p){
+	std::for_each(current->getRequestStatus().begin(), current->getRequestStatus().end(),[&](const std::map<std::string, std::string>::value_type& p){
 		if(p.first.size() > STATUS.size() && TC_Port::strncasecmp(p.first.c_str(), STATUS.c_str(), STATUS.size()) == 0) {
 			return;
 		}
@@ -589,7 +589,7 @@ bool ServantHandle::checkValidSetInvoke(const CurrentPtr &current)
          * 3 客户端set名称与服务端set属于不同名称,eg,test1.s.1 <->test2.n.2
          * 4 1,2,3条件都不满足，则认为该调用不合法
          */
-        map<string, string>::const_iterator setIt = current->getRequestStatus().find(ServantProxy::STATUS_SETNAME_VALUE);
+        std::map<std::string, std::string>::const_iterator setIt = current->getRequestStatus().find(ServantProxy::STATUS_SETNAME_VALUE);
         string sSetName("");
 
         if (setIt != current->getRequestStatus().end())
@@ -677,7 +677,7 @@ void ServantHandle::handleTarsProtocol(const CurrentPtr &current)
     processTrace(current);
 
 	//处理cookie
-	map<string, string> cookie;
+	std::map<std::string, std::string> cookie;
 	CookieOp cookieOp;
 	if (processCookie(current, cookie))
 	{

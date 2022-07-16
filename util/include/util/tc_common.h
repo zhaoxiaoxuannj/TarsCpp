@@ -47,8 +47,6 @@
 #include <thread>
 #include <memory>
 
-using namespace std;
-
 #if TARGET_PLATFORM_WINDOWS
 
 #ifndef ssize_t
@@ -59,6 +57,9 @@ using namespace std;
 
 namespace tars
 {
+
+using namespace std;
+
 /////////////////////////////////////////////////
 /**
 * @file tc_common.h

@@ -19,6 +19,9 @@
 
 #include "tars2case.h"
 
+using namespace std;
+using namespace tars;
+
 void usage()
 {
     cout << "Usage : tars2case [OPTION] tarsfile" << endl;

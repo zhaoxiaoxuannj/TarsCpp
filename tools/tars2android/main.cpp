@@ -17,6 +17,9 @@
 #include "util/tc_file.h"
 #include "tars2android.h"
 
+using namespace std;
+using namespace tars;
+
 void usage()
 {
     cout << "Usage : tars2android [OPTION] tarsfile" << endl;
