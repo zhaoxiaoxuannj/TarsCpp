@@ -268,7 +268,7 @@ bool TC_ProxyHttp::sendProxyPacket(vector<char> & buff, const TC_Endpoint & dst)
 				oss << "CONNECT " << dst.getHost() << ":" << dst.getPort()
 				    << " HTTP/1.1\r\nUser-Agent: Mozilla/4.0\r\n";
 
-				oss << "Proxy-Authorization:Basic " << TC_Base64::encode(_user + ":" + _pass) << "\r\n\r\n";
+				oss << "Proxy-Authorization:Basic " << tars::TC_Base64::encode(_user + ":" + _pass) << "\r\n\r\n";
 				strRev = oss.str();
 			}
 

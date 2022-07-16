@@ -24,38 +24,38 @@ using namespace tars;
 
 void usage()
 {
-    cout << "Usage : tars2cpp [OPTION] tarsfile" << endl;
-    // cout << "  --coder=Demo::interface1;Demo::interface2   create interface encode and decode api" << endl;
-    cout << "  --dir=DIRECTORY                             generate source file to DIRECTORY(create tars protocol file to DIRECTORY, default is current directory)" << endl;
-    cout << "  --check-default=<true,false>                optional field with default value not do package(default: true)" << endl;
-    cout << "  --unjson                                    not json interface" << endl;
-    cout << "  --os                                        only create struct(not create interface) " << endl;
-    cout << "  --include=\"dir1;dir2;dir3\"                set search path of tars protocol" << endl;
-    // cout << "  --unknown                                   create unkown field" << endl;
-    cout << "  --tarsMaster                                create get registry info interface" << endl;
-    cout << "  --currentPriority						   use current path first." << endl;
-    cout << "  --without-trace                             不需要调用链追踪逻辑" << endl;
-    cout << "  tars2cpp support type: bool byte short int long float double vector map" << endl;
+    std::cout << "Usage : tars2cpp [OPTION] tarsfile" << std::endl;
+    // std::cout << "  --coder=Demo::interface1;Demo::interface2   create interface encode and decode api"  << std::endl;
+    std::cout << "  --dir=DIRECTORY                             generate source file to DIRECTORY(create tars protocol file to DIRECTORY, default is current directory)"  << std::endl;
+    std::cout << "  --check-default=<true,false>                optional field with default value not do package(default: true)"  << std::endl;
+    std::cout << "  --unjson                                    not json interface"  << std::endl;
+    std::cout << "  --os                                        only create struct(not create interface) "  << std::endl;
+    std::cout << "  --include=\"dir1;dir2;dir3\"                set search path of tars protocol"  << std::endl;
+    // std::cout << "  --unknown                                   create unkown field"  << std::endl;
+    std::cout << "  --tarsMaster                                create get registry info interface"  << std::endl;
+    std::cout << "  --currentPriority						   use current path first."  << std::endl;
+    std::cout << "  --without-trace                             不需要调用链追踪逻辑"  << std::endl;
+    std::cout << "  tars2cpp support type: bool byte short int long float double vector map"  << std::endl;
     exit(0);
 }
 
-void check(vector<string> &vTars)
+void check(std::vector<std::string> &vTars)
 {
     for(size_t i  = 0; i < vTars.size(); i++)
     {
-        string ext  = tars::TC_File::extractFileExt(vTars[i]);
+        std::string ext  = tars::TC_File::extractFileExt(vTars[i]);
         if(ext == "tars")
         {
             if(!tars::TC_File::isFileExist(vTars[i]))
             {
-                cerr << "file '" << vTars[i] << "' not exists" << endl;
+                std::cerr << "file '" << vTars[i] << "' not exists"  << std::endl;
 				usage();
                 exit(0);
             }
         }
         else
         {
-            cerr << "only support tars file." << endl;
+            std::cerr << "only support tars file."  << std::endl;
             exit(0);
         }
     }
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
     tars::TC_Option option;
     option.decode(argc, argv);
-    vector<string> vTars = option.getSingle();
+    std::vector<std::string> vTars = option.getSingle();
 
     check(vTars);
 
@@ -80,10 +80,10 @@ int main(int argc, char* argv[])
     }
 
     // bool bCoder = option.hasParam("coder");
-    // vector<string> vCoder;
+    // vector<std::string> vCoder;
     // if(bCoder)
     // {
-    //     vCoder = tars::TC_Common::sepstr<string>(option.getValue("coder"), ";", false);
+    //     vCoder = tars::TC_Common::sepstr<std::string>(option.getValue("coder"), ";", false);
     //     if(vCoder.size() == 0)
     //     {
     //         usage();
@@ -132,12 +132,12 @@ int main(int argc, char* argv[])
 
     if (option.hasParam("xml"))
     {
-        vector<string> vXmlIntf;
+        vector<std::string> vXmlIntf;
         string sXml = tars::TC_Common::trim(option.getValue("xml"));
         sXml = tars::TC_Common::trimleft(tars::TC_Common::trimright(sXml, "]"), "[");
         if (!sXml.empty())
         {
-            vXmlIntf = tars::TC_Common::sepstr<string>(sXml, ",", false);
+            vXmlIntf = tars::TC_Common::sepstr<std::string>(sXml, ",", false);
         }
         t2c.setXmlSupport(true, vXmlIntf);
     }
@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
     //     sJson = tars::TC_Common::trimleft(tars::TC_Common::trimright(sJson, "]"), "[");
     //     if (!sJson.empty())
     //     {
-    //         t2c.setJsonSupport(tars::TC_Common::sepstr<string>(sJson, ",", false));
+    //         t2c.setJsonSupport(tars::TC_Common::sepstr<std::string>(sJson, ",", false));
     //     }
     // }
 

@@ -38,7 +38,7 @@ public:
      * 生成
      * @param file
      */
-    void createFile(const string &file);//, const vector<string> &vsCoder);
+    void createFile(const std::string &file);//, const std::vector<std::string> &vsCoder);
 
     /**
      * 设置生成文件的目录
@@ -59,7 +59,7 @@ public:
     /**
      * 根据命令选项设置是否需要生成xml支持
      */
-    void setXmlSupport(bool bXmlSupport, const vector<string>& vXmlIntf)
+    void setXmlSupport(bool bXmlSupport, const std::vector<std::string>& vXmlIntf)
     {
         _bXmlSupport = bXmlSupport;
         _vXmlIntf = vXmlIntf;
@@ -73,7 +73,7 @@ public:
     /**
      * 根据命令选项设置是否需要生成json支持
      */
-    void setJsonSupport(const vector<string>& vJsonIntf) { _vJsonIntf = vJsonIntf; }
+    void setJsonSupport(const std::vector<std::string>& vJsonIntf) { _vJsonIntf = vJsonIntf; }
 
     /**
      * 设置是否只生成struct
@@ -102,111 +102,111 @@ protected:
      * 生成xml
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-	string writeToXml(const TypeIdPtr &pPtr) const;
+	std::string writeToXml(const TypeIdPtr &pPtr) const;
 
     /**
      * 生成xml
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-	string readFromXml(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
+	std::string readFromXml(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
 
     /**
      * 生成sql
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-	string writeToSql(const TypeIdPtr &pPtr) const;
+	std::string writeToSql(const TypeIdPtr &pPtr) const;
 
     /**
      * 生成sql
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-	string readFromSql(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
+	std::string readFromSql(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
 
     /**
      * 生成json
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string writeToJson(const TypeIdPtr& pPtr) const;
+    std::string writeToJson(const TypeIdPtr& pPtr) const;
 
     /**
      * 生成json
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string readFromJson(const TypeIdPtr& pPtr, bool bIsRequire = true) const;
+    std::string readFromJson(const TypeIdPtr& pPtr, bool bIsRequire = true) const;
 
     /**
      * 生成某类型的解码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string writeTo(const TypeIdPtr &pPtr) const;
+    std::string writeTo(const TypeIdPtr &pPtr) const;
 
     /**
      * 生成某类型的编码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string readFrom(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
+    std::string readFrom(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
 
     /**
      * 生成某类型的编码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string promiseReadFrom(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
+    std::string promiseReadFrom(const TypeIdPtr &pPtr, bool bIsRequire = true) const;
 
     /**
      *
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-//    string readUnknown(const TypeIdPtr &pPtr) const;
+//    std::string readUnknown(const TypeIdPtr &pPtr) const;
     /**
      *
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    // string writeUnknown()const;
+    // std::string writeUnknown()const;
     /**
      *
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string display(const TypeIdPtr &pPtr) const;
+    std::string display(const TypeIdPtr &pPtr) const;
 
     /**
      *
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string displaySimple(const TypeIdPtr &pPtr, bool bSep) const;
+    std::string displaySimple(const TypeIdPtr &pPtr, bool bSep) const;
 
    /**
      *
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateCollection(const TypeIdPtr &pPtr, bool bSep) const;
+    std::string generateCollection(const TypeIdPtr &pPtr, bool bSep) const;
 
     //下面是类型描述的源码生成
 protected:
@@ -214,57 +214,57 @@ protected:
      * 生成某类型的字符串描述源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostr(const TypePtr &pPtr) const;
+    std::string tostr(const TypePtr &pPtr) const;
 
     /**
      * 生成内建类型的字符串源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrBuiltin(const BuiltinPtr &pPtr) const;
+    std::string tostrBuiltin(const BuiltinPtr &pPtr) const;
     /**
      * 生成vector的字符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrVector(const VectorPtr &pPtr) const;
+    std::string tostrVector(const VectorPtr &pPtr) const;
 
     /**
      * 生成map的字符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrMap(const MapPtr &pPtr) const;
+    std::string tostrMap(const MapPtr &pPtr) const;
 
     /**
      * 生成某种结构的符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrStruct(const StructPtr &pPtr) const;
+    std::string tostrStruct(const StructPtr &pPtr) const;
 
     /**
      * 生成某种枚举的符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string tostrEnum(const EnumPtr &pPtr) const;
+    std::string tostrEnum(const EnumPtr &pPtr) const;
 
     /**
      * 获取定长数组的坐标
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
 
-    string toStrSuffix(const TypeIdPtr &pPtr) const;
+    std::string toStrSuffix(const TypeIdPtr &pPtr) const;
 
     /**
      * 获取定长数组的坐标
@@ -278,7 +278,7 @@ protected:
      * 生成unsigned转换为signed的符串描述
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
     //string unsigned2signedStr(const BuiltinPtr &pPtr) const;
 
@@ -286,17 +286,17 @@ protected:
      * 生成类型变量的解码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string decode(const TypeIdPtr &pPtr) const;
+    std::string decode(const TypeIdPtr &pPtr) const;
 
     /**
      * 生成类型变量的编码源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string encode(const TypeIdPtr &pPtr) const;
+    std::string encode(const TypeIdPtr &pPtr) const;
 
     //以下是h文件的具体生成
 protected:
@@ -304,168 +304,168 @@ protected:
      * 结构的md5
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string MD5(const StructPtr &pPtr) const;
+    std::string MD5(const StructPtr &pPtr) const;
 
     /**
      * 生成结构的头文件内容
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const StructPtr &pPtr, const string& namespaceId) const;
+    std::string generateH(const StructPtr &pPtr, const std::string& namespaceId) const;
 
     /**
      * 生成容器的头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const ContainerPtr &pPtr) const;
+    std::string generateH(const ContainerPtr &pPtr) const;
 
     /**
      * 生成参数声明的头文件内容
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const ParamDeclPtr &pPtr) const;
+    std::string generateH(const ParamDeclPtr &pPtr) const;
 
     /**
      *
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateOutH(const ParamDeclPtr &pPtr) const;
+    std::string generateOutH(const ParamDeclPtr &pPtr) const;
 
     /**
      *
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateAsyncResponseCpp(const OperationPtr &pPtr, const string &cn) const;
+    std::string generateAsyncResponseCpp(const OperationPtr &pPtr, const std::string &cn) const;
 
     /**
      * 生成参数声明的内容
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateParamDecl(const ParamDeclPtr &pPtr) const;
+    std::string generateParamDecl(const ParamDeclPtr &pPtr) const;
 
     /**
      * 生成操作函数调用分发的源码
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateDispatchAsync(const OperationPtr &pPtr, const string &cn) const;
+    std::string generateDispatchAsync(const OperationPtr &pPtr, const std::string &cn) const;
 
     /**
      * 生成操作函数调用分发的源码
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateDispatchCoroAsync(const OperationPtr &pPtr, const string &cn) const;
+    std::string generateDispatchCoroAsync(const OperationPtr &pPtr, const std::string &cn) const;
 
     /**
      * 生成servant操作函数调用的源码
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateServantDispatch(const OperationPtr& pPtr, const string& cn) const;
+    std::string generateServantDispatch(const OperationPtr& pPtr, const std::string& cn) const;
 
     /**
      * 生成操作的servant的头文件源码
      * @param pPtr
      * @param bVirtual
      *
-     * @return string
+     * @return std::string
      */
-    string generateHAsync(const OperationPtr &pPtr) const;
+    std::string generateHAsync(const OperationPtr &pPtr) const;
 
     /**
      * 生成操作的servant的头文件源码
      * @param pPtr
      * @param bVirtual
      *
-     * @return string
+     * @return std::string
      */
-    string generateHAsync(const OperationPtr &pPtr, const string& interfaceId) const;
+    std::string generateHAsync(const OperationPtr &pPtr, const std::string& interfaceId) const;
 
     /**
      * 生成操作的servant的头文件源码
      * @param pPtr
      * @param bVirtual
      *
-     * @return string
+     * @return std::string
      */
-    string generateHPromiseAsync(const InterfacePtr &pInter, const OperationPtr &pPtr) const;
+    std::string generateHPromiseAsync(const InterfacePtr &pInter, const OperationPtr &pPtr) const;
 
     /**
      * 生成操作函数调用分发的源码
      * @param pPtr
      * @param cn
      *
-     * @return string
+     * @return std::string
      */
-    string generateDispatchPromiseAsync(const OperationPtr &pPtr, const string &cn) const;
+    std::string generateDispatchPromiseAsync(const OperationPtr &pPtr, const std::string &cn) const;
 
     /**
      * 生成操作的servant的头文件源码
      * @param pPtr
      * @param bVirtual
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const OperationPtr &pPtr, bool bVirtual, const string& interfaceId) const;
+    std::string generateH(const OperationPtr &pPtr, bool bVirtual, const std::string& interfaceId) const;
 
     /**
      * 生成接口的头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const InterfacePtr &pPtr, const NamespacePtr &nPtr) const;
+    std::string generateH(const InterfacePtr &pPtr, const NamespacePtr &nPtr) const;
 
     /**
      * 生成枚举的头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const EnumPtr &pPtr) const;
+    std::string generateH(const EnumPtr &pPtr) const;
 
     /**
      * 生成常量头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const ConstPtr &pPtr) const;
+    std::string generateH(const ConstPtr &pPtr) const;
 
     /**
      * 生成名字空间的头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
-    string generateH(const NamespacePtr &pPtr) const;
+    std::string generateH(const NamespacePtr &pPtr) const;
 
     /**
      * 生成名字空间的头文件源码
      * @param pPtr
      *
-     * @return string
+     * @return std::string
      */
     void generateH(const ContextPtr &pPtr) const;
 
@@ -477,7 +477,7 @@ protected:
      *
      * @return StructPtr
      */
-    StructPtr findStruct(const ContextPtr &pPtr,const string &id);
+    StructPtr findStruct(const ContextPtr &pPtr,const std::string &id);
 
     // /**
     //  *
@@ -485,15 +485,15 @@ protected:
     //  * @param pPtr
     //  * @param interface
     //  */
-    // void generateCoder(const ContextPtr &pPtr,const string &interface) const;
+    // void generateCoder(const ContextPtr &pPtr,const std::string &interface) const;
 
-    // string generateCoder(const NamespacePtr &pPtr,const string & sInterface) const;
+    // std::string generateCoder(const NamespacePtr &pPtr,const std::string & sInterface) const;
 
-    // string generateCoder(const InterfacePtr &pPtr) const;
+    // std::string generateCoder(const InterfacePtr &pPtr) const;
 
-    // string generateCoder(const OperationPtr &pPtr) const;
+    // std::string generateCoder(const OperationPtr &pPtr) const;
 
-    string generateInitValue(const TypeIdPtr &pPtr) const;
+    std::string generateInitValue(const TypeIdPtr &pPtr) const;
 
     bool isPromiseDispatchInitValue(const TypeIdPtr &pPtr) const;
 
@@ -510,8 +510,8 @@ private:
 
     bool _bJsonSupport;
 
-    vector<string>  _vJsonIntf;
-    vector<string>  _vXmlIntf;
+    std::vector<std::string>  _vJsonIntf;
+    std::vector<std::string>  _vXmlIntf;
 
 
     std::string _namespace ;

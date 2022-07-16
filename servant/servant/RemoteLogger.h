@@ -984,9 +984,9 @@ protected:
 /**
  * 按天日志
  */
-#define DLOG            (RemoteTimeLogger::getInstance()->logger()->any())
-#define FDLOG(x)        (RemoteTimeLogger::getInstance()->logger(x)->any())
-#define FFDLOG(x,y,z)   (RemoteTimeLogger::getInstance()->logger(x,y,z)->any())
+#define DLOG            (tars::RemoteTimeLogger::getInstance()->logger()->any())
+#define FDLOG(x)        (tars::RemoteTimeLogger::getInstance()->logger(x)->any())
+#define FFDLOG(x,y,z)   (tars::RemoteTimeLogger::getInstance()->logger(x,y,z)->any())
 ///////////////////////////////////////////
 /**
  *  调用链追踪
@@ -1002,21 +1002,21 @@ protected:
 // traceKey: traceType-TraceID|SpanID|ParentSpanID
 #define TARS_TRACE(traceKey, annotation, client, server, func, ret, data, ex) \
     {   \
-        FDLOG(TRACE_LOG_FILENAME) << traceKey << "|" << annotation << "|" << client << "|" << server << "|" << func << "|" << TNOWMS << "|" << ret << "|" << TC_Base64::encode(data) << "|" << ex << endl; \
+        FDLOG(TRACE_LOG_FILENAME) << traceKey << "|" << annotation << "|" << client << "|" << server << "|" << func << "|" << TNOWMS << "|" << ret << "|" << tars::TC_Base64::encode(data) << "|" << ex << endl; \
     }
 //////////////////////////////////////////////
 
 /**
  *  按天日志局部使能开关，针对单个日志文件进行使能，请在所有按天日志输出前调用
  */
-#define TENREMOTE_FDLOG(swith, sApp, sServer, sFile) (RemoteTimeLogger::getInstance()->enableRemoteEx(sApp, sServer, sFile, swith))
-#define TENLOCAL_FDLOG(swith, sApp, sServer, sFile) (RemoteTimeLogger::getInstance()->enableLocalEx(sApp, sServer, sFile, swith))
+#define TENREMOTE_FDLOG(swith, sApp, sServer, sFile) (tars::RemoteTimeLogger::getInstance()->enableRemoteEx(sApp, sServer, sFile, swith))
+#define TENLOCAL_FDLOG(swith, sApp, sServer, sFile) (tars::RemoteTimeLogger::getInstance()->enableLocalEx(sApp, sServer, sFile, swith))
 
 /**
  * 按天日志全局使能开关，请在所有按天日志输出前调用
  */
-#define TENREMOTE(swith) (RemoteTimeLogger::getInstance()->enableRemoteLog(swith))
-#define TENLOCAL(swith) (RemoteTimeLogger::getInstance()->enableLocalLog(swith))
+#define TENREMOTE(swith) (tars::RemoteTimeLogger::getInstance()->enableRemoteLog(swith))
+#define TENLOCAL(swith) (tars::RemoteTimeLogger::getInstance()->enableLocalLog(swith))
 } 
 
 #endif
