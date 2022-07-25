@@ -847,12 +847,12 @@ protected:
 /**
  * 循环日志
  */
-#define LOG (LocalRollLogger::getInstance()->logger())
+#define LOG (tars::LocalRollLogger::getInstance()->logger())
 
 #define LOG_DEBUG LOG->debug() << FILE_FUNC_LINE << "|"
 #define LOG_ERROR LOG->error() << FILE_FUNC_LINE << "|"
 
-#define LOG_EX(x) (LocalRollLogger::getInstance()->logger(x))
+#define LOG_EX(x) (tars::LocalRollLogger::getInstance()->logger(x))
 
 #define LOG_DEBUG_EX(x) LOG_EX(x)->debug() << FILE_FUNC_LINE << "|"
 #define LOG_ERROR_EX(x) LOG_EX(x)->error() << FILE_FUNC_LINE << "|"
@@ -860,12 +860,12 @@ protected:
 /**
  * @brief 按级别循环日志宏
  *
- * @param level 日志等级,LocalRollLogger::INFO_LOG,LocalRollLogger::DEBUG_LOG,LocalRollLogger::WARN_LOG,LocalRollLogger::ERROR_LOG
+ * @param level 日志等级,tars::LocalRollLogger::INFO_LOG,tars::LocalRollLogger::DEBUG_LOG,tars::LocalRollLogger::WARN_LOG,tars::LocalRollLogger::ERROR_LOG
  * @msg 日志内容语句,包括<<重定向符连接的语句,如 "Demo begin" << " testing !" <<endl;
  *
  * @用法:
  *       标准输出流方式: cout << "I have " << vApple.size() << " apples!"<<endl;
- *       框架宏方式:     LOGMSG(LocalRollLogger::INFO_LOG,"I have " << vApple.size() << " apples!"<<endl);
+ *       框架宏方式:     LOGMSG(tars::LocalRollLogger::INFO_LOG,"I have " << vApple.size() << " apples!"<<endl);
  */
 #if TARGET_PLATFORM_WINDOWS
 #define LOGMSG(level, ...)                  \
@@ -933,52 +933,52 @@ protected:
  *       框架宏方式:     TLOGINFO("I have " << vApple.size() << " apples!"<<endl);
  */
 #if TARGET_PLATFORM_WINDOWS
-#define TLOGTARS(...)    LOGMSG(LocalRollLogger::TARS_LOG,__VA_ARGS__)
-#define TLOGINFO(...)    LOGMSG(LocalRollLogger::INFO_LOG,__VA_ARGS__)
-#define TLOGDEBUG(...)   LOGMSG(LocalRollLogger::DEBUG_LOG,__VA_ARGS__)
-#define TLOGWARN(...)    LOGMSG(LocalRollLogger::WARN_LOG,__VA_ARGS__)
-#define TLOGERROR(...)   LOGMSG(LocalRollLogger::ERROR_LOG,__VA_ARGS__)
-#define TLOG_TARS(...)    LOG_MSG(LocalRollLogger::TARS_LOG,__VA_ARGS__)
-#define TLOG_INFO(...)    LOG_MSG(LocalRollLogger::INFO_LOG,__VA_ARGS__)
-#define TLOG_DEBUG(...)   LOG_MSG(LocalRollLogger::DEBUG_LOG,__VA_ARGS__)
-#define TLOG_WARN(...)    LOG_MSG(LocalRollLogger::WARN_LOG,__VA_ARGS__)
-#define TLOG_ERROR(...)   LOG_MSG(LocalRollLogger::ERROR_LOG,__VA_ARGS__)
+#define TLOGTARS(...)    LOGMSG(tars::LocalRollLogger::TARS_LOG,__VA_ARGS__)
+#define TLOGINFO(...)    LOGMSG(tars::LocalRollLogger::INFO_LOG,__VA_ARGS__)
+#define TLOGDEBUG(...)   LOGMSG(tars::LocalRollLogger::DEBUG_LOG,__VA_ARGS__)
+#define TLOGWARN(...)    LOGMSG(tars::LocalRollLogger::WARN_LOG,__VA_ARGS__)
+#define TLOGERROR(...)   LOGMSG(tars::LocalRollLogger::ERROR_LOG,__VA_ARGS__)
+#define TLOG_TARS(...)    LOG_MSG(tars::LocalRollLogger::TARS_LOG,__VA_ARGS__)
+#define TLOG_INFO(...)    LOG_MSG(tars::LocalRollLogger::INFO_LOG,__VA_ARGS__)
+#define TLOG_DEBUG(...)   LOG_MSG(tars::LocalRollLogger::DEBUG_LOG,__VA_ARGS__)
+#define TLOG_WARN(...)    LOG_MSG(tars::LocalRollLogger::WARN_LOG,__VA_ARGS__)
+#define TLOG_ERROR(...)   LOG_MSG(tars::LocalRollLogger::ERROR_LOG,__VA_ARGS__)
 
-#define TLOGEXTARS(x, ...) LOGEXMSG(LOG_EX(x), LocalRollLogger::TARS_LOG, __VA_ARGS__)
-#define TLOGEXTARS(x, ...) LOGEXMSG(LOG_EX(x), LocalRollLogger::TARS_LOG, __VA_ARGS__)
-#define TLOGEXINFO(x, ...) LOGEXMSG(LOG_EX(x), LocalRollLogger::INFO_LOG, __VA_ARGS__)
-#define TLOGEXDEBUG(x, ...) LOGEXMSG(LOG_EX(x), LocalRollLogger::DEBUG_LOG, __VA_ARGS__)
-#define TLOGEXWARN(x, ...) LOGEXMSG(LOG_EX(x), LocalRollLogger::WARN_LOG, __VA_ARGS__)
-#define TLOGEXERROR(x, ...) LOGEXMSG(LOG_EX(x), LocalRollLogger::ERROR_LOG, __VA_ARGS__)
+#define TLOGEXTARS(x, ...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::TARS_LOG, __VA_ARGS__)
+#define TLOGEXTARS(x, ...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::TARS_LOG, __VA_ARGS__)
+#define TLOGEXINFO(x, ...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::INFO_LOG, __VA_ARGS__)
+#define TLOGEXDEBUG(x, ...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::DEBUG_LOG, __VA_ARGS__)
+#define TLOGEXWARN(x, ...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::WARN_LOG, __VA_ARGS__)
+#define TLOGEXERROR(x, ...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::ERROR_LOG, __VA_ARGS__)
 
-#define TLOGEX_TARS(x, ...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::TARS_LOG, __VA_ARGS__)
-#define TLOGEX_TARS(x, ...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::TARS_LOG, __VA_ARGS__)
-#define TLOGEX_INFO(x, ...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::INFO_LOG, __VA_ARGS__)
-#define TLOGEX_DEBUG(x, ...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::DEBUG_LOG, __VA_ARGS__)
-#define TLOGEX_WARN(x, ...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::WARN_LOG, __VA_ARGS__)
-#define TLOGEX_ERROR(x, ...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::ERROR_LOG, __VA_ARGS__)
+#define TLOGEX_TARS(x, ...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::TARS_LOG, __VA_ARGS__)
+#define TLOGEX_TARS(x, ...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::TARS_LOG, __VA_ARGS__)
+#define TLOGEX_INFO(x, ...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::INFO_LOG, __VA_ARGS__)
+#define TLOGEX_DEBUG(x, ...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::DEBUG_LOG, __VA_ARGS__)
+#define TLOGEX_WARN(x, ...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::WARN_LOG, __VA_ARGS__)
+#define TLOGEX_ERROR(x, ...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::ERROR_LOG, __VA_ARGS__)
 #else
-#define TLOGTARS(msg...)    LOGMSG(LocalRollLogger::TARS_LOG,msg)
-#define TLOGINFO(msg...)    LOGMSG(LocalRollLogger::INFO_LOG,msg)
-#define TLOGDEBUG(msg...)   LOGMSG(LocalRollLogger::DEBUG_LOG,msg)
-#define TLOGWARN(msg...)    LOGMSG(LocalRollLogger::WARN_LOG,msg)
-#define TLOGERROR(msg...)   LOGMSG(LocalRollLogger::ERROR_LOG,msg)
-#define TLOG_TARS(msg...)    LOG_MSG(LocalRollLogger::TARS_LOG,msg)
-#define TLOG_INFO(msg...)    LOG_MSG(LocalRollLogger::INFO_LOG,msg)
-#define TLOG_DEBUG(msg...)   LOG_MSG(LocalRollLogger::DEBUG_LOG,msg)
-#define TLOG_WARN(msg...)    LOG_MSG(LocalRollLogger::WARN_LOG,msg)
-#define TLOG_ERROR(msg...)   LOG_MSG(LocalRollLogger::ERROR_LOG,msg)
-#define TLOGEXTARS(x, msg...) LOGEXMSG(LOG_EX(x), LocalRollLogger::TARS_LOG, msg)
-#define TLOGEXINFO(x, msg...) LOGEXMSG(LOG_EX(x), LocalRollLogger::INFO_LOG, msg)
-#define TLOGEXDEBUG(x, msg...) LOGEXMSG(LOG_EX(x), LocalRollLogger::DEBUG_LOG, msg)
-#define TLOGEXWARN(x, msg...) LOGEXMSG(LOG_EX(x), LocalRollLogger::WARN_LOG, msg)
-#define TLOGEXERROR(x, msg...) LOGEXMSG(LOG_EX(x), LocalRollLogger::ERROR_LOG, msg)
+#define TLOGTARS(msg...)    LOGMSG(tars::LocalRollLogger::TARS_LOG,msg)
+#define TLOGINFO(msg...)    LOGMSG(tars::LocalRollLogger::INFO_LOG,msg)
+#define TLOGDEBUG(msg...)   LOGMSG(tars::LocalRollLogger::DEBUG_LOG,msg)
+#define TLOGWARN(msg...)    LOGMSG(tars::LocalRollLogger::WARN_LOG,msg)
+#define TLOGERROR(msg...)   LOGMSG(tars::LocalRollLogger::ERROR_LOG,msg)
+#define TLOG_TARS(msg...)    LOG_MSG(tars::LocalRollLogger::TARS_LOG,msg)
+#define TLOG_INFO(msg...)    LOG_MSG(tars::LocalRollLogger::INFO_LOG,msg)
+#define TLOG_DEBUG(msg...)   LOG_MSG(tars::LocalRollLogger::DEBUG_LOG,msg)
+#define TLOG_WARN(msg...)    LOG_MSG(tars::LocalRollLogger::WARN_LOG,msg)
+#define TLOG_ERROR(msg...)   LOG_MSG(tars::LocalRollLogger::ERROR_LOG,msg)
+#define TLOGEXTARS(x, msg...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::TARS_LOG, msg)
+#define TLOGEXINFO(x, msg...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::INFO_LOG, msg)
+#define TLOGEXDEBUG(x, msg...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::DEBUG_LOG, msg)
+#define TLOGEXWARN(x, msg...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::WARN_LOG, msg)
+#define TLOGEXERROR(x, msg...) LOGEXMSG(LOG_EX(x), tars::LocalRollLogger::ERROR_LOG, msg)
 
-#define TLOGEX_TARS(x, msg...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::TARS_LOG, msg)
-#define TLOGEX_INFO(x, msg...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::INFO_LOG, msg)
-#define TLOGEX_DEBUG(x, msg...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::DEBUG_LOG, msg)
-#define TLOGEX_WARN(x, msg...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::WARN_LOG, msg)
-#define TLOGEX_ERROR(x, msg...) LOGEX_MSG(LOG_EX(x), LocalRollLogger::ERROR_LOG, msg)
+#define TLOGEX_TARS(x, msg...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::TARS_LOG, msg)
+#define TLOGEX_INFO(x, msg...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::INFO_LOG, msg)
+#define TLOGEX_DEBUG(x, msg...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::DEBUG_LOG, msg)
+#define TLOGEX_WARN(x, msg...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::WARN_LOG, msg)
+#define TLOGEX_ERROR(x, msg...) LOGEX_MSG(LOG_EX(x), tars::LocalRollLogger::ERROR_LOG, msg)
 #endif
 
 /**
