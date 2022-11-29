@@ -35,7 +35,7 @@ using namespace tup;
 class TC_Transceiver;
 
 #define TARS_NET_MIN_PACKAGE_SIZE 5
-#define TARS_NET_MAX_PACKAGE_SIZE 1024*1024*10
+#define TARS_NET_MAX_PACKAGE_SIZE 1024*1024*1024
 
 template<typename T>
 T net2host(T len)
