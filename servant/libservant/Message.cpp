@@ -29,7 +29,7 @@ void ReqMessage::init(CallType eCallType, ServantProxy *prx)
 }
 
 ReqMessage::~ReqMessage()
-{
+{	
 	if(deconstructor)
 	{
 		deconstructor();
@@ -40,6 +40,8 @@ ReqMessage::~ReqMessage()
 		delete pMonitor;
 		pMonitor = NULL;
 	}
+	this->sched = NULL;
+	this->pObjectProxy = NULL;
 }
 
 /////////////////////////////////////////////////////////////////////////////
