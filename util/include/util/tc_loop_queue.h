@@ -18,6 +18,7 @@
 #define  _TC_LOOP_QUEUE_H_
 
 #include <vector>
+#include <atomic>
 #include <stdlib.h>
 #include <string.h>
 
@@ -42,12 +43,12 @@ public:
     typedef vector<T> queue_type;
 
     TC_LoopQueue(size_t iSize)
+        : _iBegin(0)
+        , _iEnd(0)
     {
         //做个保护 最多不能超过 1000000
         //Make a protection. No more than 1000000.
         // assert(iSize<1000000);
-        _iBegin = 0;
-        _iEnd = 0;
         _iCapacitySub = iSize;
         _iCapacity = iSize + 1;
         _p=(T*)malloc(_iCapacity*sizeof(T));
@@ -63,27 +64,29 @@ public:
     {
         bEmpty = false;
         //uint32_t iEnd = _iEnd;
-        iEnd = _iEnd;
-        iBegin = _iBegin;
-        if((iEnd > _iBegin && iEnd - _iBegin < 2) ||
-                ( _iBegin > iEnd && _iBegin - iEnd > (_iCapacity-2) ) )
+        iBegin = _iBegin.load(std::memory_order_relaxed);
+        iEnd = _iEnd.load(std::memory_order_acquire);
+        if((iEnd > iBegin && iEnd - iBegin < 2) ||
+                ( iBegin > iEnd && iBegin - iEnd > (_iCapacity-2) ) )
         {
             return false;
         }
         else
         { 
-            memcpy(_p+_iBegin,&t,sizeof(T));
+            memcpy(_p+iBegin,&t,sizeof(T));
             //*(_p+_iBegin) = t;
 
-            if(_iEnd == _iBegin)
+            if(iEnd == iBegin)
                 bEmpty = true;
 
-            if(_iBegin == _iCapacitySub)
-                _iBegin = 0;
+            if(iBegin == _iCapacitySub)
+                iBegin = 0;
             else
-                _iBegin++;
+                iBegin++;
+            
+            _iBegin.store(iBegin, std::memory_order_release);
 
-            if(!bEmpty && 1 == size())
+            if(!bEmpty && 1 == size(iBegin, iEnd))
                 bEmpty = true;
 
             return true;
@@ -93,26 +96,29 @@ public:
     bool push_back(const T &t,bool & bEmpty)
     {
         bEmpty = false;
-        size_t iEnd = _iEnd;
-        if((iEnd > _iBegin && iEnd - _iBegin < 2) ||
-                ( _iBegin > iEnd && _iBegin - iEnd > (_iCapacity-2) ) )
+        size_t iBegin = _iBegin.load(std::memory_order_relaxed);
+        size_t iEnd = _iEnd.load(std::memory_order_acquire);
+        if((iEnd > iBegin && iEnd - iBegin < 2) ||
+                ( iBegin > iEnd && iBegin - iEnd > (_iCapacity-2) ) )
         {
             return false;
         }
         else
         { 
-            memcpy(_p+_iBegin,&t,sizeof(T));
+            memcpy(_p+iBegin,&t,sizeof(T));
             //*(_p+_iBegin) = t;
 
-            if(_iEnd == _iBegin)
+            if(iEnd == iBegin)
                 bEmpty = true;
 
-            if(_iBegin == _iCapacitySub)
-                _iBegin = 0;
+            if(iBegin == _iCapacitySub)
+                iBegin = 0;
             else
-                _iBegin++;
+                iBegin++;
+            
+            _iBegin.store(iBegin, std::memory_order_release);
 
-            if(!bEmpty && 1 == size())
+            if(!bEmpty && 1 == size(iBegin, iEnd))
                 bEmpty = true;
 #if 0
             if(1 == size())
@@ -131,10 +137,11 @@ public:
 
     bool push_back(const queue_type &vt)
     {
-        size_t iEnd=_iEnd;
+        size_t iBegin = _iBegin.load(std::memory_order_relaxed);
+        size_t iEnd = _iEnd.load(std::memory_order_acquire);
         if(vt.size()>(_iCapacity-1) ||
-                (iEnd>_iBegin && (iEnd-_iBegin)<(vt.size()+1)) ||
-                ( _iBegin>iEnd && (_iBegin-iEnd)>(_iCapacity-vt.size()-1) ) )
+                (iEnd>iBegin && (iEnd-iBegin)<(vt.size()+1)) ||
+                ( iBegin>iEnd && (iBegin-iEnd)>(_iCapacity-vt.size()-1) ) )
         {
             return false;
         }
@@ -142,70 +149,79 @@ public:
         { 
             for(size_t i=0;i<vt.size();i++)
             {
-                memcpy(_p+_iBegin,&vt[i],sizeof(T));
+                memcpy(_p+iBegin,&vt[i],sizeof(T));
                 //*(_p+_iBegin) = vt[i];
-                if(_iBegin == _iCapacitySub)
-                    _iBegin = 0;
+                if(iBegin == _iCapacitySub)
+                    iBegin = 0;
                 else
-                    _iBegin++;
+                    iBegin++;
             }
+            _iBegin.store(iBegin, std::memory_order_release);
             return true;
         }
     }
 
     bool pop_front(T &t)
     {
-        if(_iEnd==_iBegin)
+        size_t iEnd = _iEnd.load(std::memory_order_relaxed);
+        size_t iBegin = _iBegin.load(std::memory_order_acquire);
+        if(iEnd==iBegin)
         {
             return false;
         }
-        memcpy(&t,_p+_iEnd,sizeof(T));
+        memcpy(&t,_p+iEnd,sizeof(T));
         //t = *(_p+_iEnd);
-
-        if(_iEnd == _iCapacitySub)
-            _iEnd = 0;
+        if(iEnd == _iCapacitySub)
+            iEnd = 0;
         else
-            _iEnd++;
+            iEnd++;
+        _iEnd.store(iEnd, std::memory_order_release);    
         return true;
     }
 
     bool pop_front()
     {
-        if(_iEnd==_iBegin)
+        size_t iEnd = _iEnd.load(std::memory_order_relaxed);
+        size_t iBegin = _iBegin.load(std::memory_order_acquire);
+        if(iEnd==iBegin)
         {
             return false;
         }
-        if(_iEnd == _iCapacitySub)
-            _iEnd = 0;
+        if(iEnd == _iCapacitySub)
+            iEnd = 0;
         else
-            _iEnd++;
+            iEnd++;
+        _iEnd.store(iEnd, std::memory_order_release);    
         return true;
     }
 
     bool get_front(T &t)
     {
-        if(_iEnd==_iBegin)
+        size_t iEnd = _iEnd.load(std::memory_order_relaxed);
+        size_t iBegin = _iBegin.load(std::memory_order_relaxed);
+        if(iEnd==iBegin)
         {
             return false;
         }
-        memcpy(&t,_p+_iEnd,sizeof(T));
+        memcpy(&t,_p+iEnd,sizeof(T));
         //t = *(_p+_iEnd);
         return true;
     }
 
     bool empty()
     {
-        if(_iEnd == _iBegin)
-        {
-            return true;
-        }
-        return false;
+        return _iEnd.load(std::memory_order_relaxed) == _iBegin.load(std::memory_order_relaxed);
     }
 
 	size_t size()
     {
-		size_t iBegin=_iBegin;
-		size_t iEnd=_iEnd;
+		size_t iBegin=_iBegin.load(std::memory_order_relaxed);
+		size_t iEnd=_iEnd.load(std::memory_order_relaxed);
+        return size(iBegin, iEnd);
+    }
+
+    size_t size(size_t iBegin, size_t iEnd)
+    {
         if(iBegin<iEnd)
             return iBegin+_iCapacity-iEnd;
         return iBegin-iEnd;
@@ -217,11 +233,14 @@ public:
     }
 
 private:
+    // cache_line_size - sizeof(size_t)
+    static const size_t padding_size = 64 - sizeof(size_t);
+	std::atomic<size_t> _iBegin;
+    char padding1[padding_size]; /* force _iBegin and _iEnd to different cache lines */
+	std::atomic<size_t> _iEnd;
     T * _p;
     size_t _iCapacity;
 	size_t _iCapacitySub;
-	size_t _iBegin;
-	size_t _iEnd;
 };
 
 }
