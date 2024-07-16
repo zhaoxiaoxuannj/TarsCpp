@@ -19,6 +19,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
 #include <cassert>
 #include <functional>
 #include "util/tc_ex.h"
