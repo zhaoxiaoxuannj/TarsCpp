@@ -1216,22 +1216,29 @@ void Application::initializeServer()
     //初始化本地Log
     __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[set roll logger] ") << "OK" << endl;
     LocalRollLogger::getInstance()->setLogInfo(ServerConfig::Application, ServerConfig::ServerName, ServerConfig::LogPath, ServerConfig::LogSize, ServerConfig::LogNum, _communicator, ServerConfig::Log);
+	  __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[111111111111set roll logger] ") << "OK" << endl;
     _epollServer->setLocalLogger(LocalRollLogger::getInstance()->logger());
+	  __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[222222222222set roll logger] ") << "OK" << endl;
 
     //初始化是日志为同步
     LocalRollLogger::getInstance()->sync(true);
+	  __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[333333333333set roll logger] ") << "OK" << endl;
 
     //设置日志级别
     string level = AppCache::getInstance()->get("logLevel");
+	  __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[444444444444set roll logger] ") << "OK" << endl;
     if(level.empty())
     {
+	      __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[555555555set roll logger] ") << "OK" << endl;
         level = _conf.get("/tars/application/server<logLevel>","DEBUG");
+	      __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[6666666set roll logger] ") << "OK" << endl;
     }
 
 	ServerConfig::LogLevel = TC_Common::upper(level);
+	  __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[7777777777set roll logger] ") << "OK" << endl;
 
 	LocalRollLogger::getInstance()->logger()->setLogLevel(ServerConfig::LogLevel);
-
+  __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[88888888set roll logger] ") << "OK" << endl;
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     //初始化到LogServer代理
     __out__.info() << OUT_LINE << "\n" << TC_Common::outfill("[set time logger] ") << "OK" << endl;
